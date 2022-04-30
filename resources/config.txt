@@ -1,0 +1,16 @@
+displayW=1280
+displayH=720
+playerName=Human
+playerAge=0
+key_UP=38
+key_RIGTH=39
+key_DOWN=40
+key_LEFT=37
+key_SELECT=32
+key_START=13
+key_B=90
+key_A=88
+key_Y=67
+key_X=86
+key_L=65
+key_R=83
