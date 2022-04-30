@@ -1,10 +1,20 @@
-1 ->  Juego en 2D de estratejia que mezcle batallas con puzzles e interacción con NPC.
-2 -> El juego debe ser basado en pokemon GBA, pero con guerreros... Espana, Navaja, puño...
-	+ Peleas en cantinas vr mortal kombat.
-	+ Simulador de vida : ser lo que tu quieres ser.
-	+ Graficas Mayor que NES... y con elementos reales.
-3 ->
+I need create a motor to video game:
 
- + Full Screem
- + Controles por maquina de estados.
- + Con dialogos muy diferentes.
+A player mouve into a map with anothers NPC...
+
+player: The player character with: attributes, posX, posY, statitics
+objects: The not animated elemets of maps... Hav attribs.
+NPC: No player character... interac with player
+Doors: The player change a map 
+
+
+MAP: 
+Matrix[][] with multiples characters
+0 : Spaces to mouve
+P : player
+N : NPC
+O : Object 
+
+
+...
+

@@ -30,6 +30,8 @@ class Software:
         self.display.mainloop()
 
     def refreshGame(self):
+        self.controller.paintPlayer(self.canvas)
+        self.canvas.create_image(300,300,image=self.controller.player.tempSprite, anchor=NW, tag="mapa")
         self.display.after(30, self.refreshGame)
 
 

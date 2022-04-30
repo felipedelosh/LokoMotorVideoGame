@@ -3,7 +3,9 @@ FelipedelosH
 This is the main controller to my videogame
 
 """
+from tkinter import *
 from control import Control
+from player import *
 
 class Controller:
     def __init__(self) -> None:
@@ -24,6 +26,11 @@ class Controller:
             self.configuration["key_R"])
         self.language = {} # Containt a language
         self.loadLanguage()
+        self.player = Player()
+
+    def paintPlayer(self, canvas):
+        
+        pass
 
 
     def loadLanguage(self, language="ESP"):
@@ -70,3 +77,9 @@ class Controller:
 
     def setLanguageDefault(self):
         self.language["gameTitle"]="LokoGame"
+
+    def _setPlayer(self):
+        # Load all player images
+        
+        self.player.posX = 100
+        self.player.posY = 100
