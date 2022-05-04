@@ -6,6 +6,7 @@ This is the main controller to my videogame
 from tkinter import *
 from control import Control
 from player import *
+from stateMachine import *
 
 class Controller:
     def __init__(self) -> None:
@@ -26,7 +27,25 @@ class Controller:
             self.configuration["key_R"])
         self.language = {} # Containt a language
         self.loadLanguage()
+        self.SMgame = StateMachine()
+        self._initStateMachineGame()
         self.player = Player()
+
+    def _initStateMachineGame(self):
+        self.SMgame.addNode("gameStart")
+        self.SMgame.addNode("gamePause")
+        self.SMgame.addNode("gameOptions")
+        # To game Running
+        for i in self.control.direction_buttons:
+            self.SMgame.addConection("gameStart", "gameStart", i)
+        for i in self.control.action_buttons:
+            self.SMgame.addConection("gameStart", "gameStart", i)
+        self.SMgame.addConection("gameStart", "gamePause", self.control.key_START)
+        self.SMgame.addConection("gamePause", "gameStart", self.control.key_START)
+        self.SMgame.addConection("gameStart", "gameOptions", self.control.key_SELECT)
+        self.SMgame.addConection("gameOptions", "gameStart", self.control.key_SELECT)
+        self.SMgame.addConection("gamePause", "gameOptions", self.control.key_SELECT)
+        self.SMgame.addConection("gameOptions", "gamePause", self.control.key_START)        
 
     def paintPlayer(self, canvas):
         
@@ -53,11 +72,15 @@ class Controller:
         except:
             self.setConfigDefaultOptions()
 
+    def getFPS(self):
+        return int(1000/int(self.configuration["FPS"]))
+
     def setConfigDefaultOptions(self):
         self.configuration["displayW"]="1280"
         self.configuration["displayH"]="720"
         self.configuration["playerName"]="Human"
         self.configuration["playerAge"]="0"
+        self.configuration["FPS"]="30"
         self._setConfigDefaultOptionsController()
     
     def _setConfigDefaultOptionsController(self):

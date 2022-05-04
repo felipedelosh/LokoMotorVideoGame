@@ -32,7 +32,7 @@ class Software:
     def refreshGame(self):
         self.controller.paintPlayer(self.canvas)
         self.canvas.create_image(300,300,image=self.controller.player.tempSprite, anchor=NW, tag="mapa")
-        self.display.after(30, self.refreshGame)
+        self.display.after(self.controller.getFPS(), self.refreshGame)
 
 
     def keyPressed(self, Event):

@@ -17,4 +17,6 @@ class Control(object):
         self.key_X = key_X
         self.key_L = key_L
         self.key_R = key_R
-        self.keyResult = [key_UP, key_RIGTH, key_DOWN, key_LEFT, key_SELECT, key_START, key_B, key_A, key_Y, key_X, key_L, key_R]
+        self.keyResult = [key_UP, key_RIGTH, key_DOWN, key_LEFT, key_SELECT, key_START, key_B, key_A, key_Y, key_X, key_L, key_R] # Save all number code of keyboard
+        self.direction_buttons = [key_UP, key_RIGTH, key_DOWN, key_LEFT]
+        self.action_buttons = [key_B, key_A, key_Y, key_X, key_L, key_R]

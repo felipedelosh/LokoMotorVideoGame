@@ -1,5 +1,6 @@
 displayW=1280
 displayH=720
+FPS=24
 playerName=Human
 playerAge=0
 key_UP=38
