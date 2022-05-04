@@ -9,6 +9,8 @@ class Player:
         self.tempSprite = PhotoImage(file="resources/images/player/example.png")
         self.posX = 500
         self.posY = 200
+        self.max_pos_x = 0
+        self.max_pos_y = 0
         self.age = 0
         self.health = 100
         self.attack = 1
@@ -22,12 +24,15 @@ class Player:
             self.posY = self.posY - self.velocity
 
     def player_mouve_down(self):
-        self.posY = self.posY + self.velocity
+        if self.posY+150 < self.max_pos_y: #150 is h of sprite.png
+            self.posY = self.posY + self.velocity
 
     def player_mouve_rigth(self):
-        self.posX = self.posX + self.velocity
+        if self.posX+self.velocity < self.max_pos_x-50:#50 is w of sprite.png
+            self.posX = self.posX + self.velocity
 
     def player_mouve_left(self):
-        self.posX = self.posX - self.velocity
+        if self.posX > 0:
+            self.posX = self.posX - self.velocity
 
     

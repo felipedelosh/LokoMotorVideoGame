@@ -30,6 +30,7 @@ class Controller:
         self.SMgame = StateMachine()
         self._initStateMachineGame()
         self.player = Player()
+        self._setPlayer()
 
     def _initStateMachineGame(self):
         self.SMgame.addNode("gameStart")
@@ -134,6 +135,8 @@ class Controller:
 
     def _setPlayer(self):
         # Load all player images
-        
+        self.player.max_pos_x = int(self.configuration["displayW"])
+        self.player.max_pos_y = int(self.configuration["displayH"])
         self.player.posX = 100
         self.player.posY = 100
+        self.player.velocity = int(self.configuration["playerVelocity"])

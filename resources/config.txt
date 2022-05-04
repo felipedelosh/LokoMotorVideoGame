@@ -3,6 +3,7 @@ displayH=720
 FPS=24
 playerName=Human
 playerAge=0
+playerVelocity=5
 key_UP=38
 key_RIGTH=39
 key_DOWN=40
