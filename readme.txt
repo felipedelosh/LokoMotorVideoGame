@@ -1,20 +1,9 @@
-I need create a motor to video game:
+I need create a motor[base] to mi video game:
 
-A player mouve into a map with anothers NPC...
+When the APP start load a configuration text file
+https://github.com/felipedelosh/LokoMotorVideoGame/blob/main/resources/config.txt
+There configure all with resolution and keypad
 
-player: The player character with: attributes, posX, posY, statitics
-objects: The not animated elemets of maps... Hav attribs.
-NPC: No player character... interac with player
-Doors: The player change a map 
+The game is only a player mouve into MAP like a pokemon of GB.
 
-
-MAP: 
-Matrix[][] with multiples characters
-0 : Spaces to mouve
-P : player
-N : NPC
-O : Object 
-
-
-...
-
+Exist sprites and show in screem... The game is Erase all Window and then paint a elements with conditions.
