@@ -31,35 +31,13 @@ class Software:
 
     def refreshGame(self):
         self.controller.paintPlayer(self.canvas)
-        self.canvas.create_image(300,300,image=self.controller.player.tempSprite, anchor=NW, tag="mapa")
+        
         self.display.after(self.controller.getFPS(), self.refreshGame)
 
 
     def keyPressed(self, Event):
         if str(Event.keycode) in self.controller.control.keyResult:
-            if str(Event.keycode) == self.controller.control.key_UP:
-                print("Arriba")
-            if str(Event.keycode) == self.controller.control.key_RIGTH:
-                print("Derecha")
-            if str(Event.keycode) == self.controller.control.key_DOWN:
-                print("Abajo")
-            if str(Event.keycode) == self.controller.control.key_LEFT:
-                print("Izquierda")    
-            if str(Event.keycode) == self.controller.control.key_B:
-                print("B")
-            if str(Event.keycode) == self.controller.control.key_A:
-                print("A")
-            if str(Event.keycode) == self.controller.control.key_Y:
-                print("Y")
-            if str(Event.keycode) == self.controller.control.key_X:
-                print("X")
-            if str(Event.keycode) == self.controller.control.key_SELECT:
-                print("Select")
-            if str(Event.keycode) == self.controller.control.key_START:
-                print("Start")
-            if str(Event.keycode) == self.controller.control.key_L:
-                print("L")
-            if str(Event.keycode) == self.controller.control.key_R:
-                print("R")
+            self.controller.keyPressed(Event.keycode)
+
 
 s = Software()

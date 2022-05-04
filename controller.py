@@ -48,8 +48,39 @@ class Controller:
         self.SMgame.addConection("gameOptions", "gamePause", self.control.key_START)        
 
     def paintPlayer(self, canvas):
-        
-        pass
+        # Delete a player anf then paitn a sprite
+        canvas.delete("player")
+        canvas.create_image(self.player.posX,self.player.posY,image=self.player.tempSprite, anchor=NW, tag="player")
+
+    def keyPressed(self, keycode):
+        if str(keycode) == self.control.key_UP:
+            #print("Arriba")
+            self.player.player_mouve_up()
+        if str(keycode) == self.control.key_RIGTH:
+            #print("Derecha")
+            self.player.player_mouve_rigth()
+        if str(keycode) == self.control.key_DOWN:
+            #print("Abajo")
+            self.player.player_mouve_down()
+        if str(keycode) == self.control.key_LEFT:
+            #print("Izquierda")
+            self.player.player_mouve_left()    
+        if str(keycode) == self.control.key_B:
+            print("B")
+        if str(keycode) == self.control.key_A:
+            print("A")
+        if str(keycode) == self.control.key_Y:
+            print("Y")
+        if str(keycode) == self.control.key_X:
+            print("X")
+        if str(keycode) == self.control.key_SELECT:
+            print("Select")
+        if str(keycode) == self.control.key_START:
+            print("Start")
+        if str(keycode) == self.control.key_L:
+            print("L")
+        if str(keycode) == self.control.key_R:
+            print("R")
 
 
     def loadLanguage(self, language="ESP"):
