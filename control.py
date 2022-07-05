@@ -3,6 +3,8 @@ this is the player control
 
 To mouve and interact with the video game
 """
+
+
 class Control(object):
     def __init__(self, key_UP, key_RIGTH, key_DOWN, key_LEFT, key_SELECT, key_START, key_B, key_A, key_Y, key_X, key_L, key_R) -> None:
         self.key_UP = key_UP

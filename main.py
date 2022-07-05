@@ -13,6 +13,7 @@ class Software:
 
 
         self.controller = Controller()
+        self.controller.gameCanvas = self.canvas
 
 
         self.VizualizedAndRun()
@@ -30,7 +31,21 @@ class Software:
         self.display.mainloop()
 
     def refreshGame(self):
-        self.controller.paintPlayer(self.canvas)
+        
+        if self.controller.SMgame.pointer == "intro":
+            self.controller.playIntro(self.canvas)
+
+        if self.controller.SMgame.pointer == "mainMenu":
+            self.controller.showMainMenu(self.canvas)
+
+        if self.controller.SMgame.pointer == "gameStart":
+            
+            self.playTheGame()
+        
+        if self.controller.SMgame.pointer == "gameOptions":
+            pass
+
+        
         
         self.display.after(self.controller.getFPS(), self.refreshGame)
 
@@ -38,6 +53,10 @@ class Software:
     def keyPressed(self, Event):
         if str(Event.keycode) in self.controller.control.keyResult:
             self.controller.keyPressed(Event.keycode)
+
+    def playTheGame(self):
+        self.controller.paintPlayer(self.canvas)
+
 
 
 s = Software()
