@@ -48,6 +48,8 @@ class Controller:
         self.SMgame.addNode("gamePause")
         self.SMgame.addNode("gameOptions")
         self.SMgame.addConection("intro", "mainMenu", "t")
+        self.SMgame.addConection("mainMenu", "gameStart", "gameStart")
+
 
 
         self.SMgame.setInitialPointer("intro")
@@ -77,12 +79,6 @@ class Controller:
         self.mainMenuSM.addConection("exitGame", "optionsGame", self.control.key_UP)
         self.mainMenuSM.addConection("exitGame", "newGame", self.control.key_DOWN)
         self.mainMenuSM.addConection("newGame", "exitGame", self.control.key_UP)
-
-
-    def paintPlayer(self, canvas):
-        # Delete a player anf then paitn a sprite
-        canvas.delete("player")
-        canvas.create_image(self.player.posX,self.player.posY,image=self.player.tempSprite, anchor=NW, tag="player")
 
     def keyPressed(self, keycode):
         if self.SMgame.pointer == "gameStart":
@@ -119,11 +115,25 @@ class Controller:
             if str(keycode) == self.control.key_UP:
                 self.mainMenuSM.mouvePointer(self.control.key_UP)
             if str(keycode) == self.control.key_RIGTH:
-                self.mainMenuSM.mouvePointer(self.control.key_RIGTH)
+                self.executeGameConfig()
             if str(keycode) == self.control.key_DOWN:
                 self.mainMenuSM.mouvePointer(self.control.key_DOWN)
             if str(keycode) == self.control.key_LEFT:
                 self.mainMenuSM.mouvePointer(self.control.key_LEFT)
+            if str(keycode) == self.control.key_START:
+                self.executeGameConfig()
+
+
+    def executeGameConfig(self):
+        """
+        Execute a option of self.mainMenuSM
+        """
+        if self.mainMenuSM.pointer == "newGame":
+            self.SMgame.mouvePointer("gameStart")
+
+        if self.mainMenuSM.pointer == "continueGame":
+            self.SMgame.mouvePointer("gameStart")
+            
 
     def loadLanguage(self, language="ESP"):
         try:
@@ -155,7 +165,7 @@ class Controller:
         self.configuration["playerAge"]="0"
         self.configuration["playerSpriteLookUP"]="player_look_up.png"
         self.configuration["FPS"]="30"
-        self._setConfigDefaultOptionsController()
+        self._setConfigDefaultOptionsController()  
     
     def _setConfigDefaultOptionsController(self):
         self.configuration["key_U"]="38"
@@ -175,18 +185,16 @@ class Controller:
     def setLanguageDefault(self):
         self.language["gameTitle"]="LokoGame"
 
-    def playIntro(self, canvas):
+    def showIntro(self, canvas):
         try:
             _x = int(canvas['width'])*0.35
         except:
             _x = 200
 
 
-        canvas.delete("intro")
+        
         canvas.create_image(_x,20,image=self.imgIntro, anchor=NW, tag="intro")
         self.SMgame.mouvePointer("t")
-    
-        canvas.delete("intro")
         
 
     def showMainMenu(self, canvas):
@@ -197,8 +205,20 @@ class Controller:
             _x = 200
             _y = 200
         
-        canvas.delete("mainMenu")
+        self._deleteCanvasNotGameItems(canvas)
+        canvas.create_line(_x, _y-5, _x, _y-35, fill="red", arrow=LAST, tag="mainMenu")
+        canvas.create_line(_x, _y+15, _x, _y+35, fill="red", arrow=LAST, tag="mainMenu")
+        canvas.create_rectangle(_x-50, _y-20, _x+50, _y+20, fill="snow",tag="mainMenu")
         canvas.create_text(_x, _y, text=self.mainMenuSM.pointer, tag="mainMenu")
+
+    def showGame(self, canvas):
+        self._deleteCanvasNotGameItems(canvas)
+        self.paintPlayer(canvas)
+
+    def _deleteCanvasNotGameItems(self, canvas):
+        canvas.delete("intro")
+        canvas.delete("mainMenu")
+
         
 
     def _setPlayer(self):
@@ -209,3 +229,19 @@ class Controller:
         self.player.posX = 100
         self.player.posY = 100
         self.player.velocity = int(self.configuration["playerVelocity"])
+
+
+
+#----------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------
+
+    def paintPlayer(self, canvas):
+        # Delete a player anf then paitn a sprite
+        canvas.delete("player")
+        canvas.create_image(self.player.posX,self.player.posY,image=self.player.tempSprite, anchor=NW, tag="player")
+
+

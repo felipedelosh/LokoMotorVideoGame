@@ -33,14 +33,13 @@ class Software:
     def refreshGame(self):
         
         if self.controller.SMgame.pointer == "intro":
-            self.controller.playIntro(self.canvas)
+            self.controller.showIntro(self.canvas)
 
         if self.controller.SMgame.pointer == "mainMenu":
             self.controller.showMainMenu(self.canvas)
 
         if self.controller.SMgame.pointer == "gameStart":
-            
-            self.playTheGame()
+            self.controller.showGame(self.canvas)
         
         if self.controller.SMgame.pointer == "gameOptions":
             pass
@@ -53,10 +52,6 @@ class Software:
     def keyPressed(self, Event):
         if str(Event.keycode) in self.controller.control.keyResult:
             self.controller.keyPressed(Event.keycode)
-
-    def playTheGame(self):
-        self.controller.paintPlayer(self.canvas)
-
 
 
 s = Software()
